@@ -1,0 +1,401 @@
+@import 'reset';
+
+/**
+* Variables
+**/
+$main-color: #FFB82F;
+$secondary-color: #111111;
+$code-font: 'Source Code Pro', monospace;
+
+
+$mobile: 319px;
+$tablet: 767px;
+$desktop: 1023px;
+
+/**
+* Animations
+**/
+@keyframes SkylineSlider {
+  0%{
+    transform: translate3d(0px, 0, 0);
+  }
+  100%{
+    transform: translate3d(-2417px, 0, 0);
+  }
+}
+
+/**
+*
+* Global Styles
+*
+**/
+
+
+main, section, html, body, #viewport {
+	height: 100vh;
+	min-height: 800px;
+	width: 100%; 
+	overflow-y: hidden;
+}
+
+body {
+	color: $secondary-color;
+	font-family: $code-font;
+}
+
+main {
+	overflow-y: scroll;
+	background: $secondary-color;
+}
+
+strong {
+	font-weight: bold;
+}
+
+/*
+* Slide Screen
+*/
+.slide {
+	position: relative;
+
+	&-header {
+		height: 50vh;
+		background: $main-color;
+		text-align: center;
+
+		h1 {
+			font-size: 60px;
+			padding: 4vh 0 20px;
+
+			@media only screen and (max-width : $desktop){
+				font-size: 30px;
+				padding: 100px 0 20px;
+			}
+
+			@media only screen and (max-width : $tablet){
+				font-size: 20px;
+				padding: 50px 0 20px;
+			}
+
+		}
+
+		h2 {
+			font-size: 25px;
+
+			@media only screen and (max-width : $desktop){
+				font-size: 20px;
+			}
+
+			@media only screen and (max-width : $tablet){
+				font-size: 12px;
+				letter-spacing: -1px;
+			}
+
+		} 
+	}
+
+	&.learnmore &-header {
+		background: $secondary-color;
+		color: $main-color;
+
+		h1 {
+			font-size: 30px;
+			padding-top: 10vh;
+
+			@media only screen and (max-width : $tablet){
+				font-size: 20px;
+				padding-top: 80px;
+			}
+
+			@media only screen and (min-width : $tablet) and (max-width: $desktop){
+				font-size: 35px;
+			}
+
+
+			small {
+				font-size: 14px;
+
+				@media only screen and (min-width : $tablet) and (max-width: $desktop){
+					display: block;
+					font-size: 18px;
+					padding-top: 10px;
+				}
+			} 
+		}
+
+
+	}
+
+	&-headshot {
+		position: absolute;
+		bottom: 50vh;
+		left: 50%;
+		width: 304px;
+		margin-bottom: -152px;
+		margin-left: -152px;
+		z-index: 5;
+
+		@media only screen and (max-width : $tablet){
+			zoom: 0.5;
+		    top: 50%;
+		    margin-top: -50%;
+		}			
+		
+
+		&-thought {
+			position: absolute;
+			left: -180px;
+			top: -50px;
+			font-size: 18px;
+			padding-top:40px;
+			padding-left: 30px;
+			padding-right: 30px;
+			box-sizing: border-box;
+			width: 176px;
+			height: 173px;
+			background: url(images/bubble-headshot.png);
+
+			@media only screen and (max-width : $tablet){
+				top: -120px;
+				left: -140px;
+			}
+		}
+
+		&-quote {
+			position: absolute;
+			right: -170px;
+			top: -30px;
+			font-size: 18px;
+			padding-top:40px;
+			padding-left: 15px;
+			box-sizing: border-box;
+			width: 185px;
+			height: 126px;
+			background: url(images/comment-headshot.png);
+
+			@media only screen and (max-width : $tablet){
+				top: -60px;
+				right: -150px;
+			}
+
+		}
+
+		&-image {
+
+		}
+	}
+
+	&-ide {
+		position: relative;
+
+		&-container {
+			width: 910px;
+			position: absolute;
+			margin-top: -32vh;
+			margin-left: -455px;
+			left: 50%;
+			top: 50%;
+			z-index: 6;
+
+			@media only screen and (max-width : $desktop){
+			    width: 90vw;
+			    position: absolute;
+			    margin-top: -150px;
+			    margin-left: -45vw;
+			}
+
+			@media only screen and (min-width : $tablet) and (max-width: $desktop){
+			    margin-top: -250px;
+			}
+
+		}
+
+		&-header {
+			height: 24px;
+			background: #3E3E3E;
+			border-radius: 12px 12px 0 0;
+			margin: 0;
+			padding-left: 10px;
+			padding-top: 5px;
+
+			span {
+				display: inline-block;
+				width: 12px;
+				height: 12px;
+				background: red;
+				border-radius: 100%;
+
+				&.close {
+					background: #F06962;
+				}
+				&.min {
+					background: #EFC147;
+				}
+				&.max {
+					background: #4DCD4C;
+				}
+			}
+		}
+
+		&-menu {
+			background: #29292A;
+
+			li {
+				padding: 10px 12px;
+				font-size: 13px;
+				background: #303030;
+				border-left: 1px solid #29292A;
+				margin: 0;
+				float:left;
+				transition: all ease-in-out 0.1s;
+
+				&:first-of-type {
+					border-left: none;
+				}
+				&:hover {
+					background: #383838;
+				}
+
+
+				&.active {
+					background: #232323;
+
+					a{
+						color: white;
+						cursor: default;
+
+						&:after {
+							content: "\f111";
+							transform: scalex(0.6) scaley(0.6);
+						}
+					}
+				}
+			}
+
+			a {
+				color: #959495;
+				text-decoration: none;
+				padding-right: 30px;
+
+
+				&:after {
+					content: "\f00d";
+					font-family: FontAwesome;
+					float: right;
+				}
+			}
+
+			&:after {
+				content: '';
+				display: block;
+				clear:both;
+			}
+		}
+
+		&-footer {
+			height: 24px;
+			color: white;
+			font-size: 14px;
+			background: #672578;
+			border-radius:0 0 12px 12px;
+
+
+			span {
+				float: right;
+				margin: 3px 25px 0 0;
+			}
+		}
+
+		&-code {
+			max-height: 45vh;
+			overflow-y: scroll;
+			margin-bottom: -2px;
+		    background: #1b2426;
+
+			@media only screen and (max-width : $tablet){
+				height: 35vh;
+				min-height: auto;
+				max-height: auto;
+				font-size: 11px;
+				letter-spacing: -1px;
+			}
+
+			.syntaxhighlighter .gutter .line {
+				padding: 0 5px;
+			}
+
+			.tab {
+				display: none;
+
+				&.active {
+					display: block;
+				}
+			}
+
+		}
+
+
+	}
+
+	&-footer {
+		position: static;
+		width: 100%;
+		height: 50vh;
+		bottom: 0;
+		overflow: hidden;
+
+		&-skyline {
+			width: 80000px;
+			height: 100%;
+		  	animation: SkylineSlider 180s linear infinite;
+			background: $secondary-color url(images/skyline.png) bottom repeat-x;
+		}
+
+	}
+
+	&.learnmore &-footer {
+		background: $main-color;
+
+
+
+
+		&-skyline {
+			background-image: url(images/logos.jpg);
+			background-color: $main-color;
+
+			@media only screen and (max-width : $tablet){
+				background-position: center 140%;
+			}
+		}
+	}
+
+	.arrow {
+		display: block;
+		position: absolute;
+		width: 50px;
+		font-size: 50px;
+		left: 50%;
+		z-index: 8;
+		margin-left: -25px;
+		text-decoration: none;
+
+		&.next-arrow {
+			transform: rotate(90deg);
+			bottom: 120px;
+			color: $main-color;
+
+			@media only screen and (max-width : $tablet){
+				bottom: auto;
+				top: 60%;
+			}
+    
+		}
+
+		&.prev-arrow {
+			top: 20px;
+			color: $main-color;
+			transform: rotate(-90deg);
+		}
+
+	}
+}
