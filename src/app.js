@@ -1,3 +1,5 @@
+'use strict';
+
 require('./app.scss');
 require('jquery');
 
@@ -63,11 +65,15 @@ var App = function() {
 		this.switchTab(e.currentTarget.dataset.triggerTab);
 	}.bind(this)); 
 
-
-
 	if(window.location.hash) {
 		this.switchPage(window.location.hash.slice(1));
 	}
+
+	setTimeout(function() {
+		// Adding a hook to be used
+		// for intro animations
+		this.$el.addClass('is-ready');
+	}.bind(this), 300);
 
 	this.highlightStuff()
 }

@@ -8,6 +8,9 @@ $secondary-color: #111111;
 $code-font: 'Source Code Pro', monospace;
 
 
+/**
+* Breakpoints for Media Queries
+**/
 $mobile: 319px;
 $tablet: 767px;
 $desktop: 1023px;
@@ -24,6 +27,24 @@ $desktop: 1023px;
   }
 }
 
+@keyframes Float {
+  0% {
+	transform: translateY(0rem) rotate(90deg);
+  } 
+
+  20% {
+	transform: translateY(0rem) rotate(90deg);
+  } 
+
+  35% {
+	transform: translateY(2rem) rotate(90deg);
+
+  }
+  100% {
+    transform: translateY(0) rotate(90deg);
+  }
+}
+
 /**
 *
 * Global Styles
@@ -33,8 +54,7 @@ $desktop: 1023px;
 
 main, section, html, body, #viewport {
 	height: 100vh;
-	min-height: 800px;
-	width: 100%; 
+	width: 100vw; 
 	overflow-y: hidden;
 }
 
@@ -46,6 +66,12 @@ body {
 main {
 	overflow-y: scroll;
 	background: $secondary-color;
+
+	&.is-ready {
+		.slide-headshot {
+			left: 0;
+		}
+	}
 }
 
 strong {
@@ -64,17 +90,20 @@ strong {
 		text-align: center;
 
 		h1 {
-			font-size: 60px;
-			padding: 4vh 0 20px;
+			font-size: 25px;
+			padding: 12vw 0 20px;
+			transition: padding 0.3s ease-in-out;
 
-			@media only screen and (max-width : $desktop){
-				font-size: 30px;
-				padding: 100px 0 20px;
+
+			@media only screen and (min-width : $tablet){
+				font-size: 40px;
+				padding: 8vw 0 20px;
 			}
 
-			@media only screen and (max-width : $tablet){
-				font-size: 20px;
-				padding: 50px 0 20px;
+			
+			@media only screen and (min-width : $desktop){
+				// font-size: 30px;
+				padding: 2vw 0 20px;
 			}
 
 		}
@@ -128,17 +157,24 @@ strong {
 
 	&-headshot {
 		position: absolute;
-		bottom: 50vh;
-		left: 50%;
+		transition:all 0.3s ease-in-out;
+		bottom: 0;
+		top: 0;
+		right: 0;
+		left: 120vw;
+
+		margin: auto;
 		width: 304px;
-		margin-bottom: -152px;
-		margin-left: -152px;
+		height: 304px;
 		z-index: 5;
+		transform: scale(1);
 
 		@media only screen and (max-width : $tablet){
-			zoom: 0.5;
-		    top: 50%;
-		    margin-top: -50%;
+			transform: scale(0.5);
+		}	
+
+		@media only screen and (min-width : $tablet) and (max-width : $desktop){
+			transform: scale(0.75);
 		}			
 		
 
@@ -338,7 +374,7 @@ strong {
 	}
 
 	&-footer {
-		position: static;
+		position: relative;
 		width: 100%;
 		height: 50vh;
 		bottom: 0;
@@ -373,6 +409,7 @@ strong {
 		display: block;
 		position: absolute;
 		width: 50px;
+		height: 60px;
 		font-size: 50px;
 		left: 50%;
 		z-index: 8;
@@ -381,14 +418,15 @@ strong {
 
 		&.next-arrow {
 			transform: rotate(90deg);
-			bottom: 120px;
 			color: $main-color;
+			bottom: 0;
+			top: 0;
+			right: 0;
+			left: 0;
+			margin: auto;
+			position:absolute;
+			animation: Float 2s ease-in-out infinite;
 
-			@media only screen and (max-width : $tablet){
-				bottom: auto;
-				top: 60%;
-			}
-    
 		}
 
 		&.prev-arrow {
@@ -397,5 +435,25 @@ strong {
 			transform: rotate(-90deg);
 		}
 
+	}
+
+}
+
+.fixed-menu {
+	position: fixed;
+	bottom: 2vh;
+	right: 5vh;
+	z-index: 200;
+	
+	a {
+		display: inline-block;
+		padding: 2px 8px;
+		border-radius: 8px;
+		background: #FFB82F;
+		color: #111111;
+		border: 3px solid #111111;
+		text-decoration: none;
+		float: right;
+		clear: both;
 	}
 }
